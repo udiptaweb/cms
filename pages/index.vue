@@ -38,9 +38,34 @@
            </div>
       </div>
       <div class="columns is-centered" v-else>
-           <div class="column is-3">
-             <progress class="progress is-small is-primary" max="100">15%</progress>
-           </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
      <section class="section">
@@ -76,9 +101,34 @@
          </div>
       </div>
       <div class="columns is-centered" v-else>
-         <div class="column is-3">
-           <progress class="progress is-small is-primary" max="100">15%</progress>
-         </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="card" >
+            <div class="card-content">
+              <progress class="progress is-small" max="100">15%</progress>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
