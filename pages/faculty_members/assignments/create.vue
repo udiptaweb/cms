@@ -76,9 +76,6 @@
 </template>
 <script>
 export default{
-async fetch ({ store, params }) {
-    await store.dispatch('GET_DEPARTMENTS');
-},
 layout : 'FacultyLayout',
 middleware : 'facultyAuthenticate',
 data(){

@@ -61,10 +61,7 @@
 </template>
 <script>
 export default{
-async fetch({store , params}){
-   await store.dispatch('GET_DEPARTMENTS');
-   await store.dispatch('GET_ASSIGNMENTS');
-},
+
 layout : 'FacultyLayout',
 middleware : 'facultyAuthenticate',
 data(){

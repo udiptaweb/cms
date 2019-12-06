@@ -72,9 +72,6 @@ import axios from 'axios'
 export default{
 layout : 'FacultyLayout',
 middleware : 'facultyAuthenticate',
-async fetch ({ store, params }) {
-    await store.dispatch('GET_DEPARTMENTS');
-},
 data(){
 	return{
 		create_notification:{

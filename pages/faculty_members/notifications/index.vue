@@ -61,7 +61,6 @@ export default{
 layout : 'FacultyLayout',
 middleware : 'facultyAuthenticate',
 async fetch({store , params}){
-   await store.dispatch('GET_DEPARTMENTS');
    await store.dispatch('GET_NOTIFICATIONS');
 },
 data(){

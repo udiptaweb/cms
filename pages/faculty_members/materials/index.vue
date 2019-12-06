@@ -45,7 +45,6 @@
 <script>
 export default{
 async fetch({store , params}){
-   await store.dispatch('GET_DEPARTMENTS');
    await store.dispatch('GET_MATERIALS');
 },
 layout : 'FacultyLayout',
