@@ -1,0 +1,76 @@
+
+.section-buttons{
+	margin-bottom: 16px;
+}
+.section-custom{
+	margin-top: 100px;
+}
+.small-custom-success{
+	background-color: white;
+	color: #4CAF50;
+	border: 1px solid #4CAF50;
+	padding: 3px 7px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+.small-custom-success:hover{
+	background-color: #4CAF50;
+	color: white;
+}
+.small-custom-danger{
+	background-color: white;
+	color: Tomato;
+	border: 1px solid Tomato;
+	padding: 3px 7px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+.small-custom-danger:hover{
+	background-color: Tomato;
+	color: white!important;
+}
+.small-custom-info{
+	background-color: white;
+	color: #4d80e4;
+	border: 1px solid #4d80e4;
+	padding: 3px 7px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	cursor: pointer;
+}
+.small-custom-info:hover{
+	background-color: #4d80e4;
+	color: white!important;
+}
+.btn-success{
+	background-color: #4CAF50; 
+}
+.active-link{
+	color: MediumSeaGreen;
+}
+.nuxt-link-exact-active{
+	color: MediumSeaGreen!important;
+}
+.text-12{
+	font-size: 12px;
+}
+.text-14{
+	font-size: 14px;
+}
+.text-18{
+	font-size: 18px;
+}
+.text-24{
+	font-size: 24px;
+}
+.is-info-custom{
+	background-color: #537ec5;
+}
+.is-gray-custom{
+	background-color: #f8f8f8;
+}
