@@ -12,8 +12,6 @@ export const state = () => ({
   api_url:'http://algorizon.in/api/cmsapi/api',
   departments:[],
   notifications:[],
-  assignments:[],
-  materials:[],
   batches:[],
   faculty_users:[],
 
@@ -61,12 +59,6 @@ export const mutations = {
   setNotifications(state , notifications){
     state.notifications = notifications;
   },
-  setAssignments(state, assignments){
-    state.assignments = assignments;
-  },
-  setMaterials(state, materials){
-    state.materials = materials;
-  },
   setBatches(state, batches){
     state.batches = batches;
   },
@@ -110,14 +102,7 @@ export const actions = {
     const departments = await this.$axios.$get(this.state.api_url + '/departments');
     commit('setDepartments', departments.departments);
   },
-  async GET_ASSIGNMENTS({commit}){
-    const assignments = await this.$axios.$post(this.state.api_url + '/faculty_members/assignments',{facultyuser_id : this.state.faculty_user.id});
-    commit('setAssignments', assignments.assignments);
-  },
-  async GET_MATERIALS({commit}){
-    const materials = await this.$axios.$post(this.state.api_url + '/faculty_members/materials',{facultyuser_id : this.state.faculty_user.id});
-    commit('setMaterials', materials.materials);
-  },
+  
   async GET_BATCHES({commit}){
     const batches = await this.$axios.$get(this.state.api_url + '/batches');
     commit('setBatches', batches.batches);

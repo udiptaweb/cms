@@ -7,7 +7,7 @@
 						<div class="card-content">
 							<div class="columns">
 								<div class="column">
-									<h5 class="has-text-centered has-ext-weight-semibold">ASSIGNMENT</h5>
+									<h5 class="has-text-centered title-text">ASSIGNMENT</h5>
 									<hr>
 									<div class="assignment" v-html="assignment.content">
 										
@@ -36,3 +36,8 @@
 		}
 	}
 </script>	
+<style scoped>
+.title-text{
+	color: #50649C;
+}
+</style>

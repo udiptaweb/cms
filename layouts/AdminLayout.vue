@@ -1,12 +1,12 @@
 <template>
-	<div>
+	<div class="admin-layout">
 		<section>
 	        <NavigationBar></NavigationBar>
 	    </section>
 	    <section >
 	        <div class="columns is-desktop is-fullheight" style="">
 	          <div class="column is-2 is-sidebar-menu is-hidden-mobile is-sticky" style="">
-	          	<div class="container" style="margin-top: 30px;margin-left: 14px;">
+	          	<div class="container" style="margin-top: 60px;margin-left: 14px;">
 	          		<SideBar></SideBar>
 	          	</div>
 	          </div>
@@ -32,15 +32,22 @@ export default{
 .is-sidebar-menu{
     overflow-y:scroll;
     min-height: 80vh;
-    max-height: 90vh; 
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: stretch;
 }
 .is-sticky{
+height: 100vh;
+background-color: #181823;
 position: -webkit-sticky;
 position: sticky;
 top: 0;
+}
+.admin-layout{
+	font-family:Poppins,sans-serif;
+}
+.content-main{
+	background-color: #EAF0F7;
 }
 </style>

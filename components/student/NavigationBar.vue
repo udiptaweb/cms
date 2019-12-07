@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar is-fixed-top is-dark" role="navigation" aria-label="main navigation">
+	<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
 	    <div class="navbar-brand">
 	      <span class="navbar-item">
 	      	<nuxt-link to="/">
@@ -17,32 +17,32 @@
 			<div class="navbar-start">
 				<a class="navbar-item">
 					<nuxt-link to="/student/dashboard">
-				       <span class="has-text-weight-semibold">Home</span>
+				       <span class="">Home</span>
 				    </nuxt-link>   
 				</a>
 				<a class="navbar-item">
 					<nuxt-link to="/student/profile">
-				       <span class="has-text-weight-semibold">Profile</span>
+				       <span class="">Profile</span>
 				    </nuxt-link>   
 				</a>
 				<a class="navbar-item">
 					<nuxt-link to="/student/assignments">
-				       <span class="has-text-weight-semibold">Assignments</span>
+				       <span class="">Assignments</span>
 				    </nuxt-link>   
 				</a>
 				<a class="navbar-item">
 					<nuxt-link to="/student/attendences">
-				       <span class="has-text-weight-semibold">Attendences</span>
+				       <span class="">Attendences</span>
 				    </nuxt-link>   
 				</a>
 				<a class="navbar-item">
 					<nuxt-link to="/student/materials">
-				       <span class="has-text-weight-semibold">Mateials</span>
+				       <span class="">Materials</span>
 				    </nuxt-link>   
 				</a>
 				<a class="navbar-item">
 					<nuxt-link to="/student/settings">
-				       <span class="has-text-weight-semibold">Settings</span>
+				       <span class="">Settings</span>
 				    </nuxt-link>   
 				</a>
 				

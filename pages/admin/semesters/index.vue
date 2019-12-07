@@ -10,121 +10,127 @@
 				</nav>
 			</div>
 		</div>
-		<div class="columns">
-			<div class="column">
-				<div class="tabs is-centered is-boxed is-small">
-				  <ul>
-				    <li :class="breadcrumb=='semesters'?'is-active':''">
-				      <a @click="setBreadcrumb('semesters')">
-				        <span class="icon is-small"><i class="fa fa-building" aria-hidden="true"></i></span>
-				        <span class="has-text-weight-semibold">Semesters</span>
-				      </a>
-				    </li>
-				    <li :class="breadcrumb=='create_new'?'is-active':''">
-				      <a @click="setBreadcrumb('create_new')">
-				        <span class="icon is-small"><i class="fa fa-edit" aria-hidden="true"></i></span>
-				        <span  class="has-text-weight-semibold">Create New Semester</span>
-				      </a>
-				    </li>
-				  </ul>
-				</div>
-			</div>
-		</div>
-		<div class="columns" v-if="breadcrumb=='semesters'">
-			<div class="column">
-				<div  v-if="$store.state.departments.length>0">
+		<div class="coulmns">
+			<div class="card">
+				<div class="card-content">
 					<div class="columns">
-						<div class="column text-14">
-							<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-						    <thead>
-							    <tr>
-							      <th>Department</th>
-							      <th>Status</th>
-							      <th>Action</th>
-							    </tr>
-						    </thead>
-						    <tbody >
-							    <tr v-for="department in $store.state.departments">
-							      <td>
-							      	{{department.title}}
-							      	
-							      </td>
-							      <td><button class="button is-outlined is-small" :class="department.status==true?'is-success':department.status==false?'is-primary':''"><span v-if="department.status==true">Active</span><span v-if="department.status==false">Disabled</span></button></td>
-							      <td>
-							      	<button class="button is-outlined is-link is-small" @click="viewSemesters(department)" :disabled="department.status==false? true : false">View</button>
-							      </td>
-							    </tr>
-						    </tbody>
-						</table>
-						</div>
-						<div class="column text-14" v-if="view_semesters">
-							<p class="has-text-info has-text-centered text-18" >{{department.title}}</p>
-							<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" v-if="department.semesters.length>0">
-							    <thead>
-								    <tr>
-								      <th>Semester</th>
-								      <th>Status</th>
-								      <th>Action</th>
-								    </tr>
-							    </thead>
-							    <tbody >
-								    <tr v-for="semester in department.semesters">
-								      <td>
-								      	{{semester.title}}
-								      	<a>
-								      	<span style="float: right;font-size: 12px;" @click="setInputId(semester)"><i class="fa fa-edit" aria-hidden="true" ></i></span>
-								        </a>
-								      	<div class="field is-grouped" v-if="semester.id==show_input_id">
-										  <p class="control is-expanded">
-										    <input class="input is-small" type="text" v-model="edit_semester.title">
-										  </p>
-										  <p class="control">
-										    <a class="button is-info is-small" @click="updateSemester(semester.id)">
-										      Update
-										    </a>
-										  </p>
-										</div>
-								      </td>
-								      <td><button class="button is-outlined is-small" :class="semester.status==true?'is-success':semester.status==false?'is-primary':''" @click="toggleSemesterStatus(semester.id)"><span v-if="semester.status==true">Active</span><span v-if="semester.status==false">Disabled</span></button></td>
-								      <td>
-								      	<button class="button is-outlined is-danger is-small" @click="removeSemester(semester.id)">Delete</button>
-								      </td>
-								    </tr>
-							    </tbody>
-							</table>
-							<h5 v-else class="has-text-centered">No Semesters Added</h5>
+						<div class="column">
+							<div class="tabs is-centered is-boxed is-small">
+							  <ul>
+							    <li :class="breadcrumb=='semesters'?'is-active':''">
+							      <a @click="setBreadcrumb('semesters')">
+							        <span class="icon is-small"><i class="fa fa-building" aria-hidden="true"></i></span>
+							        <span class="has-text-weight-semibold">Semesters</span>
+							      </a>
+							    </li>
+							    <li :class="breadcrumb=='create_new'?'is-active':''">
+							      <a @click="setBreadcrumb('create_new')">
+							        <span class="icon is-small"><i class="fa fa-edit" aria-hidden="true"></i></span>
+							        <span  class="has-text-weight-semibold">Create New Semester</span>
+							      </a>
+							    </li>
+							  </ul>
+							</div>
 						</div>
 					</div>
-				</div>
-				<h5 v-else class="title is-5 has-text-centered">No Departments</h5>
-			</div>
-		</div>
-		<div class="columns" style="justify-content: center;" v-if="breadcrumb=='create_new'">
-			<div class="column is-6-tablet is-5-desktop is-4-widescreen">
-				<div class="field">
-				   <label class="label text-small">Semester</label>
-				   <div class="control">
-				    <input class="input is-small" type="text" placeholder="Semester" v-model="create_semester.title">
-				   </div>
-				   <small class="has-text-danger" v-if="create_semester.errors.title">{{create_semester.errors.title}}</small>
-				</div>
-				<div class="field">
-	              <label for="" class="label text-small" >Select Department</label>
-				  <div class="control">
-				    <div class="select is-small" style="width: 100%;">
-				      <select v-model="create_semester.department" style="width: 100%;">
-				        <option v-for="department in $store.state.departments" :value="department.id">{{department.title}}</option>
-				      </select>
-				    </div>
-				  </div>
-				</div>
-				<div class="field is-grouped">
-				   <div class="control">
-				     <button class="button is-link is-small" :class="{'is-loading':create_semester.creating}" @click="createNewSemester">CREATE</button>
-				   </div>
-				   <div class="control">
-				     <button class="button is-link is-light is-small" @click="clearForm">CLEAR</button>
-				   </div>
+					<div class="columns" v-if="breadcrumb=='semesters'">
+						<div class="column">
+							<div  v-if="$store.state.departments.length>0">
+								<div class="columns">
+									<div class="column text-14">
+										<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+									    <thead>
+										    <tr>
+										      <th>Department</th>
+										      <th>Status</th>
+										      <th>Action</th>
+										    </tr>
+									    </thead>
+									    <tbody >
+										    <tr v-for="department in $store.state.departments">
+										      <td>
+										      	{{department.title}}
+										      	
+										      </td>
+										      <td><button class="button is-outlined is-small" :class="department.status==true?'is-success':department.status==false?'is-primary':''"><span v-if="department.status==true">Active</span><span v-if="department.status==false">Disabled</span></button></td>
+										      <td>
+										      	<button class="button is-outlined is-link is-small" @click="viewSemesters(department)" :disabled="department.status==false? true : false">View</button>
+										      </td>
+										    </tr>
+									    </tbody>
+									</table>
+									</div>
+									<div class="column text-14" v-if="view_semesters">
+										<p class="has-text-info has-text-centered text-18" >{{department.title}}</p>
+										<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth" v-if="department.semesters.length>0">
+										    <thead>
+											    <tr>
+											      <th>Semester</th>
+											      <th>Status</th>
+											      <th>Action</th>
+											    </tr>
+										    </thead>
+										    <tbody >
+											    <tr v-for="semester in department.semesters">
+											      <td>
+											      	{{semester.title}}
+											      	<a>
+											      	<span style="float: right;font-size: 12px;" @click="setInputId(semester)"><i class="fa fa-edit" aria-hidden="true" ></i></span>
+											        </a>
+											      	<div class="field is-grouped" v-if="semester.id==show_input_id">
+													  <p class="control is-expanded">
+													    <input class="input is-small" type="text" v-model="edit_semester.title">
+													  </p>
+													  <p class="control">
+													    <a class="button is-info is-small" @click="updateSemester(semester.id)">
+													      Update
+													    </a>
+													  </p>
+													</div>
+											      </td>
+											      <td><button class="button is-outlined is-small" :class="semester.status==true?'is-success':semester.status==false?'is-primary':''" @click="toggleSemesterStatus(semester.id)"><span v-if="semester.status==true">Active</span><span v-if="semester.status==false">Disabled</span></button></td>
+											      <td>
+											      	<button class="button is-outlined is-danger is-small" @click="removeSemester(semester.id)">Delete</button>
+											      </td>
+											    </tr>
+										    </tbody>
+										</table>
+										<h5 v-else class="has-text-centered">No Semesters Added</h5>
+									</div>
+								</div>
+							</div>
+							<h5 v-else class="title is-5 has-text-centered">No Departments</h5>
+						</div>
+					</div>
+					<div class="columns" style="justify-content: center;" v-if="breadcrumb=='create_new'">
+						<div class="column is-6-tablet is-5-desktop is-4-widescreen">
+							<div class="field">
+							   <label class="label-text">Semester</label>
+							   <div class="control">
+							    <input class="input is-small" type="text" placeholder="Semester" v-model="create_semester.title">
+							   </div>
+							   <small class="has-text-danger" v-if="create_semester.errors.title">{{create_semester.errors.title}}</small>
+							</div>
+							<div class="field">
+				              <label for="" class="label-text" >Select Department</label>
+							  <div class="control">
+							    <div class="select is-small" style="width: 100%;">
+							      <select v-model="create_semester.department" style="width: 100%;">
+							        <option v-for="department in $store.state.departments" :value="department.id">{{department.title}}</option>
+							      </select>
+							    </div>
+							  </div>
+							</div>
+							<div class="field is-grouped">
+							   <div class="control">
+							     <button class="button is-link is-small" :class="{'is-loading':create_semester.creating}" @click="createNewSemester">CREATE</button>
+							   </div>
+							   <div class="control">
+							     <button class="button is-link is-light is-small" @click="clearForm">CLEAR</button>
+							   </div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -243,3 +249,9 @@ export default{
 	}
 }
 </script>
+<style scoped>
+	.label-text{
+		color: #92A8CA;
+	    font-size: 14px;
+	}
+</style>

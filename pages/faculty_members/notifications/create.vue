@@ -11,59 +11,66 @@
 				</nav>
 			</div>
 		</div>
-		<hr>
-		<div class="columns" style="justify-content: center;">
+		<div class="columns">
 			<div class="column">
-				<label class="label">Notification</label> <span><small class="has-text-danger" v-if="create_notification.errors.notification">{{create_notification.errors.notification}}</small></span>
-				<div class="quill-editor" 
-			         :content="create_notification.notification"
-			         @change="onEditorChange($event)"
-			         v-quill:myQuillEditor="">
-			    </div>
+				<div class="card">
+					<div class="card-content">
+						<div class="columns" style="justify-content: center;">
+							<div class="column">
+								<label class="label-text">Notification</label> <span><small class="has-text-danger" v-if="create_notification.errors.notification">{{create_notification.errors.notification}}</small></span>
+								<div class="quill-editor" 
+							         :content="create_notification.notification"
+							         @change="onEditorChange($event)"
+							         v-quill:myQuillEditor="">
+							    </div>
 
-			</div>
-			<div class="column is-6-tablet is-5-desktop is-4-widescreen">
-				<div class="field">
-				    <label class="label">Title</label>
-				    <div class="control">
-				        <input class="input is-small" type="text" placeholder="notification Title" v-model="create_notification.title">
-				    </div>
-				    <small class="has-text-danger" v-if="create_notification.errors.title">{{create_notification.errors.title}}</small>
-				</div>
-				<div class="field">
-	                <label for="" class="label text-small" >Select Department</label>
-				    <div class="control">
-					    <div class="select is-small" style="width: 100%;">
-					        <select v-model="create_notification.department" style="width: 100%;">
-					          <option v-for="department in $store.state.departments" :value="department" v-if="department.status">{{department.title}}</option>
-					        </select>
-					    </div>
+							</div>
+							<div class="column is-6-tablet is-5-desktop is-4-widescreen">
+								<div class="field">
+								    <label class="label-text">Title</label>
+								    <div class="control">
+								        <input class="input is-small" type="text" placeholder="notification Title" v-model="create_notification.title">
+								    </div>
+								    <small class="has-text-danger" v-if="create_notification.errors.title">{{create_notification.errors.title}}</small>
+								</div>
+								<div class="field">
+					                <label for="" class="label-text" >Select Department</label>
+								    <div class="control">
+									    <div class="select is-small" style="width: 100%;">
+									        <select v-model="create_notification.department" style="width: 100%;">
+									          <option v-for="department in $store.state.departments" :value="department" v-if="department.status">{{department.title}}</option>
+									        </select>
+									    </div>
+									</div>
+									<small class="has-text-danger" v-if="create_notification.errors.department">{{create_notification.errors.department}}</small>
+								</div>
+								<div class="field" v-if="create_notification.department">
+					                <label for="" class="label-text" >Select Semester</label>
+								    <div class="control">
+									    <div class="select is-small" style="width: 100%;">
+									        <select v-model="create_notification.semester" style="width: 100%;">
+									           <option v-for="semester in create_notification.department.semesters" :value="semester.id" v-if="semester.status">{{semester.title}}
+									           </option>
+									        </select>
+									    </div>
+									</div>
+									<small class="has-text-danger" v-if="create_notification.errors.semester">{{create_notification.errors.semester}}</small>
+								</div>
+					            <div class="field is-grouped">
+								  <div class="control">
+								    <button class="button is-link is-small" :class="{'is-loading':create_notification.creating}" @click="createNewNotification">CREATE</button>
+								  </div>
+								  <div class="control">
+								    <button class="button is-link is-light is-small" @click="clearForm">CLEAR</button>
+								  </div>
+								</div>
+								
+							</div>
+							
+						</div>
 					</div>
-					<small class="has-text-danger" v-if="create_notification.errors.department">{{create_notification.errors.department}}</small>
 				</div>
-				<div class="field" v-if="create_notification.department">
-	                <label for="" class="label text-small" >Select Semester</label>
-				    <div class="control">
-					    <div class="select is-small" style="width: 100%;">
-					        <select v-model="create_notification.semester" style="width: 100%;">
-					           <option v-for="semester in create_notification.department.semesters" :value="semester.id" v-if="semester.status">{{semester.title}}
-					           </option>
-					        </select>
-					    </div>
-					</div>
-					<small class="has-text-danger" v-if="create_notification.errors.semester">{{create_notification.errors.semester}}</small>
-				</div>
-	            <div class="field is-grouped">
-				  <div class="control">
-				    <button class="button is-link is-small" :class="{'is-loading':create_notification.creating}" @click="createNewNotification">CREATE</button>
-				  </div>
-				  <div class="control">
-				    <button class="button is-link is-light is-small" @click="clearForm">CLEAR</button>
-				  </div>
-				</div>
-				
 			</div>
-			
 		</div>
 	</section>
 </template>
@@ -125,3 +132,12 @@ methods:{
 },
 }
 </script>
+<style scoped>
+	.card{
+		min-height: 80vh;
+	}
+	.label-text{
+		color: #92A8CA;
+	    font-size: 14px;
+	}
+</style>

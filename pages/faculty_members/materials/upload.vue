@@ -96,7 +96,9 @@ data(){
 		}
 	}
 },
-
+mounted(){
+  this.create_material.department = this.$store.state.departments.find(department =>department.id == this.$store.state.faculty_user.department_id);
+},
 methods:{
 	changedFile(){
 		this.create_material.material_file = this.$refs.material_file.files[0];

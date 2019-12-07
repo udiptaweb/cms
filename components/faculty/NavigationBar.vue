@@ -1,5 +1,5 @@
 <template>
-	<nav class="navbar is-fixed-top is-link" role="navigation" aria-label="main navigation">
+	<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
 	    <div class="navbar-brand">
 	      <span class="navbar-item" href="/">
 	        <nuxt-link to="/">
@@ -136,5 +136,8 @@
 <style scoped>
 .item-hover:hover{
   background-color: Tomato!important;
+}
+.navbar{
+	
 }
 </style>

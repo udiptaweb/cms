@@ -137,14 +137,13 @@
 <script>
 
 export default {
-  async fetch({store}){
-     await store.dispatch('GET_FACULTY_USERS');
-     await store.dispatch('GET_DEPARTMENTS');
-  },
+  // async fetch({store}){
+  //    await store.dispatch('GET_FACULTY_USERS');
+  //    await store.dispatch('GET_DEPARTMENTS');
+  // },
   data(){
     return{
       materials:[],
-      faculty_members:[],
       departments:[],
       slice_value:7,
       slice_value_ass:7,
@@ -152,9 +151,7 @@ export default {
     }
   },
   mounted(){
-    //this.getFacultyMembers();
-    this.getRecentMaterials();
-    this.getRecentAssignments();
+    this.getFacultyMembers();
   },
   methods:{
     viewMaterial(file){
@@ -174,25 +171,25 @@ export default {
     getUploaderName(id){
       return this.$store.state.faculty_users.find(member => member.id == id);
     },
-    // async getFacultyMembers(){
-    //   await this.$axios.$get('http://algorizon.in/api/cmsapi/api' + '/students/faculty_users/show_all')
-    //   .then((response) =>{
-    //      this.faculty_members = response;
-    //      this.getDepartments();
-    //   });
-    // },
+    async getFacultyMembers(){
+      await this.$axios.$get('http://algorizon.in/api/cmsapi/api' + '/students/faculty_users/show_all')
+      .then((response) =>{
+        this.$store.commit('setFacultyUsers', response);
+        this.getDepartments();
+      });
+    },
     async getRecentMaterials(){
       this.materials = await this.$axios.$get('http://algorizon.in/api/cmsapi/api'+ '/public/recent_materials');
     },
-    // async getDepartments(){
-    //   await this.$axios.$get('http://algorizon.in/api/cmsapi/api' + '/departments')
-    //   .then((response) =>{
-    //     this.departments = response.departments;
-    //     this.getRecentMaterials();
-    //     this.getRecentAssignments();
-    //   });
+    async getDepartments(){
+      await this.$axios.$get('http://algorizon.in/api/cmsapi/api' + '/departments')
+      .then((response) =>{
+        this.$store.commit('setDepartments', response.departments);
+        this.getRecentMaterials();
+        this.getRecentAssignments();
+      });
       
-    // },
+    },
     async getRecentAssignments(){
        this.assignments = await this.$axios.$get('http://algorizon.in/api/cmsapi/api'+ '/public/recent_assignments');
     }

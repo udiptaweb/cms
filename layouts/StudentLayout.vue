@@ -1,9 +1,9 @@
 <template>
-	<div>
+	<div class="student-layout">
 		<section>
 	        <NavigationBar></NavigationBar>
 	    </section>
-	    <section>
+	    <section class="student-layout-content">
             <nuxt/>
 	    </section>
 	</div>
@@ -32,5 +32,11 @@ export default{
 position: -webkit-sticky;
 position: sticky;
 top: 0;
+}
+.student-layout-content{
+	background-color: #F5F5F5;
+}
+.student-layout{
+	font-family:Poppins,sans-serif;
 }
 </style>

@@ -12,75 +12,83 @@
 		</div>
 		<div class="columns">
 			<div class="column">
-				<div class="tabs is-centered is-boxed is-small">
-				  <ul>
-				    <li :class="breadcrumb=='departments'?'is-active':''">
-				      <a @click="setBreadcrumb('departments')">
-				        <span class="icon is-small"><i class="fa fa-building" aria-hidden="true"></i></span>
-				        <span  class="has-text-weight-semibold">Departments</span>
-				      </a>
-				    </li>
-				    <li :class="breadcrumb=='create_new'?'is-active':''">
-				      <a @click="setBreadcrumb('create_new')">
-				        <span class="icon is-small"><i class="fa fa-edit" aria-hidden="true"></i></span>
-				        <span  class="has-text-weight-semibold">Create New Department</span>
-				      </a>
-				    </li>
-				  </ul>
-				</div>
-			</div>
-		</div>
-		<div class="columns" v-if="breadcrumb=='departments'">
-			<div class="column text-14">
-				<div class="table-container" v-if="$store.state.departments.length>0">
-					<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-					  <thead>
-					    <tr>
-					      <th>Department</th>
-					      <th>Status</th>
-					      <th>Action</th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr v-for="department in $store.state.departments">
-					      <td>
-					      	<a href="#">{{department.title}}</a>
-					      	<a>
-					      	<span style="float: right;font-size: 12px;" @click="setInputId(department)"><i class="fa fa-edit" aria-hidden="true" ></i></span>
-					        </a>
-					      	<div class="field is-grouped" v-if="department.id==show_input_id">
-							  <p class="control is-expanded">
-							    <input class="input is-small" type="text" v-model="edit_department.title">
-							  </p>
-							  <p class="control">
-							    <a class="button is-info is-small" @click="updateDepartment(department.id)">
-							      Update
-							    </a>
-							  </p>
+				<div class="card">
+					<div class="card-content">
+						<div class="columns">
+							<div class="column">
+								<div class="tabs is-centered is-boxed is-small">
+								  <ul>
+								    <li :class="breadcrumb=='departments'?'is-active':''">
+								      <a @click="setBreadcrumb('departments')">
+								        <span class="icon is-small"><i class="fa fa-building" aria-hidden="true"></i></span>
+								        <span  class="has-text-weight-semibold">Departments</span>
+								      </a>
+								    </li>
+								    <li :class="breadcrumb=='create_new'?'is-active':''">
+								      <a @click="setBreadcrumb('create_new')">
+								        <span class="icon is-small"><i class="fa fa-edit" aria-hidden="true"></i></span>
+								        <span  class="has-text-weight-semibold">Create New Department</span>
+								      </a>
+								    </li>
+								  </ul>
+								</div>
 							</div>
-					      </td>
-					      <td><button class="button is-outlined is-small" :class="department.status==true?'is-success':department.status==false?'is-primary':''" @click="toggleDepartmentStatus(department.id)"><span v-if="department.status==true">Active</span><span v-if="department.status==false">Disabled</span></button></td>
-					      <td>
-					      	<button class="button is-outlined is-danger is-small" @click="removeDepartment(department.id)">Delete</button>
-					      </td>
-					    </tr>
-					  </tbody>
-					</table>
-				</div>
-				<h5 v-else class="title is-5 has-text-centered">No Department added</h5>
-			</div>
-		</div>
-		<div class="columns" style="justify-content: center;" v-if="breadcrumb=='create_new'">
-			<div class="column is-6-tablet is-5-desktop is-4-widescreen">
-				<div class="field is-grouped">
-				  <p class="control is-expanded">
-				    <input class="input is-small" type="text" placeholder="Enter the title" v-model="department">
-				  </p>
-				  <p class="control">
-				    <a class="button is-info is-small" :class="{'is-loading' : creating}" @click="createNewDepartment">
-				      Create
-				    </a>
-				  </p>
+						</div>
+						<div class="columns" v-if="breadcrumb=='departments'">
+							<div class="column text-14">
+								<div class="table-container" v-if="$store.state.departments.length>0">
+									<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+									  <thead>
+									    <tr>
+									      <th>Department</th>
+									      <th>Status</th>
+									      <th>Action</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr v-for="department in $store.state.departments">
+									      <td>
+									      	<a href="#">{{department.title}}</a>
+									      	<a>
+									      	<span style="float: right;font-size: 12px;" @click="setInputId(department)"><i class="fa fa-edit" aria-hidden="true" ></i></span>
+									        </a>
+									      	<div class="field is-grouped" v-if="department.id==show_input_id">
+											  <p class="control is-expanded">
+											    <input class="input is-small" type="text" v-model="edit_department.title">
+											  </p>
+											  <p class="control">
+											    <a class="button is-info is-small" @click="updateDepartment(department.id)">
+											      Update
+											    </a>
+											  </p>
+											</div>
+									      </td>
+									      <td><button class="button is-outlined is-small" :class="department.status==true?'is-success':department.status==false?'is-primary':''" @click="toggleDepartmentStatus(department.id)"><span v-if="department.status==true">Active</span><span v-if="department.status==false">Disabled</span></button></td>
+									      <td>
+									      	<button class="button is-outlined is-danger is-small" @click="removeDepartment(department.id)">Delete</button>
+									      </td>
+									    </tr>
+									  </tbody>
+									</table>
+								</div>
+								<h5 v-else class="title is-5 has-text-centered">No Department added</h5>
+							</div>
+						</div>
+						<div class="columns" style="justify-content: center;" v-if="breadcrumb=='create_new'">
+							<div class="column is-6-tablet is-5-desktop is-4-widescreen">
+								<div class="field is-grouped">
+								  <p class="control is-expanded">
+								    <input class="input is-small" type="text" placeholder="Enter the title" v-model="department">
+								  </p>
+								  <p class="control">
+								    <a class="button is-info is-small" :class="{'is-loading' : creating}" @click="createNewDepartment">
+								      Create
+								    </a>
+								  </p>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

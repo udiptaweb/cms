@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="public-layout">
     <section>
       <NotificationBar class="is-desktop"></NotificationBar>
     </section>
@@ -36,14 +36,16 @@ import NotificationBar from '~/components/public/NotificationBar.vue'
   }
 </script>
 <style scoped>
+.public-layout{
+  font-family:Poppins,sans-serif;
+}
   @media(max-width: 990px){
     .is-desktop{
       display: none;
     }
   }
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+ font-family:Poppins,sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -90,5 +92,11 @@ html {
 }
 .hero-body{
   background-image: url('~assets/hero1.png');background-repeat:no-repeat;background-size:100% 100%;
+}
+.footer{
+  background-color:#EAF0F7;
+  color: #50649C;
+  text-align: center;
+  font-size: 12px;
 }
 </style>

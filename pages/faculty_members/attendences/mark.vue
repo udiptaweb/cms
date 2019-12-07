@@ -11,84 +11,91 @@
 				</nav>
 			</div>
 		</div>
-		<hr>
-		<div class="columns" style="justify-content: center;">
+		<div class="columns">
 			<div class="column">
-				<label class="label">STUDENTS <span style="margin-left: 16px;" class="has-text-info">TOTAL : {{filterStudents.length}}</span> <span class="has-text-success" style="margin-left: 16px;">PRESENT : {{attendence.students.length}}</span> <span class="has-text-danger" style="margin-left: 16px;">ABSENT : {{Number(filterStudents.length)-Number(attendence.students.length)}}</span> <span style="margin-left: 14px;" class="is-size-7">{{$moment(attendence.date).format('MMMM Do YYYY')}}</span></label> 
-                <div class="table-container" v-if="filterStudents.length>0">
-					<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-					  <thead>
-					    <tr>
-					      <th>Name</th>
-					      <th>Email</th>
-					      <th>
-					        <label class="checkbox">
-							  <input type="checkbox" @change="setCheckAll" v-model="check_all">
-							  All Present
-							</label>
-					      </th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					    <tr v-for="student in filterStudents" >
-					      <td>{{student.name}}</td>
-					      <td>{{student.email}}</td>
-					      <td>
-					      	<label class="checkbox">
-							  <input type="checkbox" :value="student.id" v-model="attendence.students">
-							</label>
-					      </td> 
-					    </tr>
-					  </tbody>
-					</table>
-				</div>
-				<h5 v-else class="title is-5 has-text-centered">No Students found</h5>
-			</div>
-			<div class="column is-6-tablet is-5-desktop is-4-widescreen">
-				<div class="field">
-				    <label class="label">DEPARTMENT</label>
-				    <p><h2 class="has-text-info">{{myDepartment.title}}</h2></p>
-				</div>
-				<div class="field">
-	                <label for="" class="label text-small" >Select Semester</label>
-				    <div class="control">
-					    <div class="select is-small" style="width: 100%;">
-					        <select v-model="semester" style="width: 100%;" >
-					           <option v-for="semester in myDepartment.semesters" :value="semester.id" v-if="semester.status">{{semester.title}}
-					           </option>
-					        </select>
-					    </div>
-					</div>
-					<span class="has-text-danger" v-if="attendence.errors.semester"><small>{{attendence.errors.semester}}</small></span>
-				</div>
-				<div class="field">
-	                <label for="" class="label text-small" >Select Batch</label>
-				    <div class="control">
-					    <div class="select is-small" style="width: 100%;">
-					        <select v-model="batch" style="width: 100%;">
-					           <option v-for="batch in $store.state.batches" :value="batch.id" v-if="batch.status" >{{batch.title}}
-					           </option>
-					        </select>
-					    </div>
-					</div>
-					<span class="has-text-danger" v-if="attendence.errors.batch"><small>{{attendence.errors.batch}}</small></span>
-				</div>
-				<div class="field">
-	                <label class="label">Select Date</label>
-				    <div class="control">
-				        <input class="input is-small" type="date"  v-model="attendence.date">
-				    </div>
-				    <span class="has-text-danger" v-if="attendence.errors.date"><small>{{attendence.errors.date}}</small></span>
-				</div>
-	            <div class="field is-grouped">
-				  <div class="control">
-				    <button class="button is-link is-small" :class="{'is-loading': attendence.marking}" @click="markAttendence">MARK NOW</button>
-				  </div>
+				<div class="card">
+					<div class="card-content">
+						<div class="columns text-14" style="justify-content: center;">
+							<div class="column">
+								<label class="text-12">STUDENTS <span style="margin-left: 16px;" class="has-text-info">TOTAL : {{filterStudents.length}}</span> <span class="has-text-success" style="margin-left: 16px;">PRESENT : {{attendence.students.length}}</span> <span class="has-text-danger" style="margin-left: 16px;">ABSENT : {{Number(filterStudents.length)-Number(attendence.students.length)}}</span> <span style="margin-left: 14px;" class="is-size-7">{{$moment(attendence.date).format('MMMM Do YYYY')}}</span></label> 
+				                <div class="table-container" v-if="filterStudents.length>0">
+									<table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+									  <thead>
+									    <tr>
+									      <th>Name</th>
+									      <th>Email</th>
+									      <th>
+									        <label class="checkbox">
+											  <input type="checkbox" @change="setCheckAll" v-model="check_all">
+											  All Present
+											</label>
+									      </th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <tr v-for="student in filterStudents" >
+									      <td>{{student.name}}</td>
+									      <td>{{student.email}}</td>
+									      <td>
+									      	<label class="checkbox">
+											  <input type="checkbox" :value="student.id" v-model="attendence.students">
+											</label>
+									      </td> 
+									    </tr>
+									  </tbody>
+									</table>
+								</div>
+								<h6 v-else class="title is-size-6 has-text-centered">No Students found</h6>
+							</div>
+							<div class="column is-6-tablet is-5-desktop is-4-widescreen">
+								<div class="field">
+								    <label class="label-text">DEPARTMENT</label>
+								    <p><h2 class="has-text-info">{{myDepartment.title}}</h2></p>
+								</div>
+								<div class="field">
+					                <label for="" class="label-text" >Select Semester</label>
+								    <div class="control">
+									    <div class="select is-small" style="width: 100%;">
+									        <select v-model="semester" style="width: 100%;" >
+									           <option v-for="semester in myDepartment.semesters" :value="semester.id" v-if="semester.status">{{semester.title}}
+									           </option>
+									        </select>
+									    </div>
+									</div>
+									<span class="has-text-danger" v-if="attendence.errors.semester"><small>{{attendence.errors.semester}}</small></span>
+								</div>
+								<div class="field">
+					                <label for="" class="label-text" >Select Batch</label>
+								    <div class="control">
+									    <div class="select is-small" style="width: 100%;">
+									        <select v-model="batch" style="width: 100%;">
+									           <option v-for="batch in $store.state.batches" :value="batch.id" v-if="batch.status" >{{batch.title}}
+									           </option>
+									        </select>
+									    </div>
+									</div>
+									<span class="has-text-danger" v-if="attendence.errors.batch"><small>{{attendence.errors.batch}}</small></span>
+								</div>
+								<div class="field">
+					                <label class="label-text">Select Date</label>
+								    <div class="control">
+								        <input class="input is-small" type="date"  v-model="attendence.date">
+								    </div>
+								    <span class="has-text-danger" v-if="attendence.errors.date"><small>{{attendence.errors.date}}</small></span>
+								</div>
+					            <div class="field is-grouped">
+								  <div class="control">
+								    <button class="button is-link is-small" :class="{'is-loading': attendence.marking}" @click="markAttendence">MARK NOW</button>
+								  </div>
 
+								</div>
+								
+							</div>
+							
+						</div>
+					</div>
 				</div>
-				
 			</div>
-			
 		</div>
 	</section>
 </template>
@@ -166,3 +173,12 @@ methods:{
 },
 }
 </script>
+<style scoped>
+	.label-text{
+		color: #92A8CA;
+	    font-size: 14px;
+	}
+	.text-12{
+		font-weight: 550;
+	}
+</style>
