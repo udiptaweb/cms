@@ -14,7 +14,7 @@
     "@nuxtjs/axios": "^5.8.0",
     "@nuxtjs/bulma": "^1.2.1",
     "@nuxtjs/moment": "^1.4.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "v-calendar": "^1.0.0-beta.22",
     "vue-quill-editor": "^3.0.6",
     "vue-swal": "^1.0.0",
